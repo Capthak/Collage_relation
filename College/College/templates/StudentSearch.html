@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>Home Page</title>
+{% endblock %}
+
+{% block content %}
+<table border="1px">
+    <tr>
+        <th>Department</th>
+        <th>Name of Student</th>
+        <th>Roll no</th>
+        <th>Address</th>
+        <th>Marks</th>
+    </tr>
+    {% for i in sturesult %}
+    <tr>
+        <td>{{i.department}}</td>
+        <td>{{i.stuname}}</td>
+        <td>{{i.sturollno}}</td>
+        <td>{{i.stuaddress}}</td>
+        <td>{{i.stumarks}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}

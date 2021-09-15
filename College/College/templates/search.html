@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>Home Page</title>
+{% endblock %}
+
+{% block content %}
+<form class="form-inline my-2 my-lg-0" method='POST'>
+    {% csrf_token %}
+    <input type="radio" name="dep" value="Department"/>Department
+    <input type="radio" name="dep" value="Student"/>Student
+    <input type="radio" name="dep" value="Lecturer"/>Lecturer
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" name='search' aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
+</form>
+    {% for i in lecresult %}
+        {% for j in i.department.all %}
+            {{j}}
+        {% endfor %}
+    {{i.lecname}}
+    {{i.lecsal}}
+    {{i.lecsub}}
+    {% endfor %}<br><br><br>
+
+    {% for i in sturesult %}
+        {% for j in i.department.all %}
+            {{j}}
+        {% endfor %}
+    {{i.stuname}}
+    {{i.sturollno}}
+    {{i.stuaddress}}
+    {{i.stumarks}}
+    {% endfor %}
+    <br><br><br>
+
+
+    {% for i in sturesult %}
+    {{i.department}}
+    {{i.stuname}}
+    {{i.sturollno}}
+    {{i.stuaddress}}
+    {{i.stumarks}}
+    {% endfor %}
+    <br><br><br>
+
+    {% for i in lecresult %}
+        {% for j in i.department.all %}
+                {{j}},
+            {% endfor %}
+    {{i.lecname}}
+    {{i.lecsal}}
+    {{i.lecsub}}
+    {% endfor %}
+{% endblock %}

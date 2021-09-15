@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>Show Lecturer Page</title>
+{% endblock %}
+
+{% block content %}
+    <table class="table table-success">
+        <tr>
+            <th>Lecturer Department</th>
+            <th>Lecturer Name</th>
+            <th>Lecturer Salary</th>
+            <th>Lecturer Subject</th>
+            
+        </tr>
+        {% for i in stu %}
+            <tr>
+            <td>
+                {% for j in i.department.all %}
+                    {{j}},
+                {% endfor %}
+            </td>
+            <td>{{i.lecname}}</td>
+            <td>{{i.lecsal}}</td>
+            <td>{{i.lecsub}}</td>
+            <td><a href="{% url 'Updatelecturer' i.id %}"><button class="btn btn-warning">Update</button></a></td>
+            <td><a href="{% url 'Deletelecturer' i.id %}"><button class="btn btn-danger">Delete</button></a></td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

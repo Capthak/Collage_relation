@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>Home Page</title>
+{% endblock %}
+
+{% block content %}
+<form class="form-inline my-2 my-lg-0" method='POST'>
+    {% csrf_token %}
+  
+    <input class="form-control mr-sm-2" type="search" placeholder="Search" name='search' aria-label="Search">
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> 
+</form>
+{% if dep %}
+{{dep}}
+<table border="1px">
+    <tr>
+       <th>Department</th> 
+       <th>Name of Lecturer</th>
+       <th>salary</th>
+       <th>Subject</th>
+
+
+    </tr>
+        {% for i in lec_dep %}
+    <tr>
+
+        <td>{% for j in i.department.all %}
+            {{j}}
+        {% endfor %}</td>
+        <td>{{i.lecname}}</td>
+        <td>{{i.lecsal}}</td>
+        <td>{{i.lecsub}}</td>
+    </tr>
+    {% endfor %}
+</table><br><br><br>
+
+
+<table border="1px">
+    <tr>
+        <th>Department</th>
+        <th>Name of Student</th>
+        <th>Roll no</th>
+        <th>Address</th>
+        <th>Marks</th>
+    </tr>
+    {% for i in stu_dep %}
+    <tr>
+        <td>{{i.department}}</td>
+        <td>{{i.stuname}}</td>
+        <td>{{i.sturollno}}</td>
+        <td>{{i.stuaddress}}</td>
+        <td>{{i.stumarks}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+
+
+{% elif stu %}
+<table border="1px">
+    <tr>
+        <th>Department</th>
+        <th>Name of Student</th>
+        <th>Roll no</th>
+        <th>Address</th>
+        <th>Marks</th>
+    </tr>
+    {% for i in stu %}
+    <tr>
+        <td>{{i.department}}</td>
+        <td>{{i.stuname}}</td>
+        <td>{{i.sturollno}}</td>
+        <td>{{i.stuaddress}}</td>
+        <td>{{i.stumarks}}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+
+{% elif lec %}
+<table border="1px">
+    <tr>
+       <th>Department</th> 
+       <th>Name of Lecturer</th>
+       <th>salary</th>
+       <th>Subject</th>
+
+
+    </tr>
+        {% for i in lec %}
+    <tr>
+
+        <td>{% for j in i.department.all %}
+            {{j}}
+        {% endfor %}</td>
+        <td>{{i.lecname}}</td>
+        <td>{{i.lecsal}}</td>
+        <td>{{i.lecsub}}</td>
+    </tr>
+    {% endfor %}
+</table>
+{% elif cd   %}
+
+<h4>Search here for Student Lecturer and Department</h4>
+{% else %}
+<h4> REcored NOt FOUNd</h4>
+
+{% endif %}
+
+
+
+{% endblock %}

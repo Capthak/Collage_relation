@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title %}
+    <title>Add Lecturer Page</title>
+{% endblock %}
+
+{% block content %}
+    <a href="{% url 'Showlecturer' %}"><button>Show Lecturer</button></a>
+    <form method="POST">
+        {% csrf_token %}
+        {{form|crispy}}
+        <button type="submit">Register</button>
+    </form>
+{% endblock %}
